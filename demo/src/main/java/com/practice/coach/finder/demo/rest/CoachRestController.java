@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.practice.coach.finder.demo.dtos.CoachDTO;
-import com.practice.coach.finder.demo.entities.Area;
 import com.practice.coach.finder.demo.services.CoachService;
 
 import lombok.RequiredArgsConstructor;
