@@ -41,7 +41,10 @@ public class Coach {
 	@Column(name = "HOURLY_RATE", nullable = false)
 	private Double rate;
 	
-	@ManyToMany( cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@Column(name = "DESC")
+	private String description;
+	
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinTable(
 			  name = "coach_areas", 
 			  joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"), 

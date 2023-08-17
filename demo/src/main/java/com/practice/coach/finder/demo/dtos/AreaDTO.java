@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CoachDTO {
-	private String firstName;
-	private String lastName;
-	private Double rate;
-	private List<String> areas;
+public class AreaDTO {
+	private String code;
+	private String desc;
 }

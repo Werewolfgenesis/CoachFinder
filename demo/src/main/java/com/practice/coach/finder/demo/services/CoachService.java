@@ -29,6 +29,7 @@ public class CoachService {
 	private final AreaRepository areaRepo;
 	private final RequestRepository requestRepo;
 
+	@Transactional(readOnly = true)
 	public List<CoachDTO> getAllCoaches() {
 		return coachRepo.findAll().stream()
 				.map(coach -> new CoachDTO(coach.getFirstName(), coach.getLastName(), coach.getRate(), coach.getAreas()
@@ -36,6 +37,7 @@ public class CoachService {
 				.collect(Collectors.toList());
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public Coach registerCoach(String firstName, String lastName, Double rate, List<String> areas) {
 		List<Area> areasToSave = areas.stream()
 				.map(areaCode -> areaRepo.findById(areaCode).orElseThrow())
