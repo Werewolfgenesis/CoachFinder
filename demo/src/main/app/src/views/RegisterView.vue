@@ -60,6 +60,11 @@ import { ref } from 'vue'
 const areas = ref<string[]>(['Frontend Developer', 'Backend Developer', 'Career Advisory'])
 const skillsSelected = ref<string[]>([])
 
+const firstName = ref('')
+const lastName = ref('')
+const description = ref('')
+const hourlyRate = ref(0)
+
 const handleSubmit = () => {
     
 }

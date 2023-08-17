@@ -12,13 +12,15 @@
 import CoachCard from './CoachCard.vue';
 
 import { getAllCoaches } from '@/services/CoachService';
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { mockedCoaches } from '@/mockData';
 
+const coaches = ref([])
+
 // TODO: call service
-onMounted(() => {
-const coaches = getAllCoaches()
-console.log(coaches);
+onMounted(async () => {
+ coaches.value = await getAllCoaches()
+console.log(coaches.value);
 
 })
 
