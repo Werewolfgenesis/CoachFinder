@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -46,4 +47,9 @@ public class Coach {
 			  joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"), 
 			  inverseJoinColumns = @JoinColumn(name = "code", referencedColumnName = "code"))
 	private List<Area> areas;
+	
+	@OneToMany(mappedBy="coach")
+	private List<CoachRequest> coachRequest;
+	
+	
 }
