@@ -29,5 +29,4 @@ public class CoachRestController {
 	public void register(@RequestBody CoachDTO dto) {
 		service.registerCoach(dto.getFirstName(), dto.getLastName(), dto.getRate(), dto.getAreas());
 	}
-	
 }
