@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center m-4">
-      <h2>REGISTER A COACH, NOW!</h2>
+      <h2 style="color: #ff7730;">REGISTER A COACH, NOW! </h2>
     </div>
     <form>
       <div class="row">

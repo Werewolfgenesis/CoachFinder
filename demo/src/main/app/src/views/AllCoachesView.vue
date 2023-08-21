@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h2>Find your coach:</h2>
+    <h2 style="color: #ff7730;">Find your coach:</h2>
     <filter-checkboxes></filter-checkboxes>
     <coach-list></coach-list>
   </div>
