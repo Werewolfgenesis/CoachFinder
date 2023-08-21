@@ -1,5 +1,5 @@
 <template>
-    <button class="btn btn-secondary text-white" :type='type'>  
+    <button class="btn-secondary text-white" :type='type'>  
       <slot>{{ title }}</slot>
   </button>
 </template>

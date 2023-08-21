@@ -1,5 +1,5 @@
 <template>
-    <div v-if="mockedCoaches.length" class="container mb-4">
+    <div v-if="mockedCoaches.length" class="container mb-4 section-cards">
       <div class="row  justify-content-center">
         <div class="col col-6 col-md-3 col-sm-2 " v-for="coach in slice ? coaches.slice(-slice) : coaches" :key="coach.id">
           <CoachCard :coach="coach"></CoachCard>
@@ -19,6 +19,8 @@ const coaches = ref([])
 
 onMounted(async () => {
  coaches.value = await getAllCoaches()
+ console.log(coaches.value);
+ 
 })
 
 defineProps({
@@ -31,3 +33,12 @@ defineProps({
 
 
 </script>
+<style scoped>
+.section-cards {
+ padding: 3rem 0;
+}
+
+
+  
+
+</style>
