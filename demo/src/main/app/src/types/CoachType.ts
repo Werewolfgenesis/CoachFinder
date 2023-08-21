@@ -1,4 +1,4 @@
-type area = {
+export type area = {
     code: string,
     desc: string
 }

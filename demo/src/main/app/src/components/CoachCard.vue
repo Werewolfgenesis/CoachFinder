@@ -1,5 +1,5 @@
 <template>
-  <div class="card m-2" style="width: 20rem; height: 12rem">
+  <div class="card m-auto" >
     <div class="container p-2">
       <div class="row">
         <div class="col align-items-center"> 
@@ -12,13 +12,16 @@
         <div>{{ skill.desc }}</div>
       </div>
     </div>
+    <div v-if="toggleDetails" class="row" >
+      <div class="col align-items-center ">
+        <p>I'm Reni. Frontend ethusiast with lot of skills which I'm ready to share!</p>
+      </div>
+    </div>
       
     <!-- TODO: router-link to details page -->
-    <div class="d-flex gap-2">
-      <custom-button @click="handleDetailsPage()" title="View details" type="button" class="btn btn-dark"></custom-button>
-      <custom-button title="Contact" type="button" class="btn btn-primary">
-      </custom-button>
-     
+    <div class="row gap-1">     
+      <custom-button @click="handleDetailsPage()" title="View details" type="button"  class="btn btn-dark"></custom-button>
+      <custom-button title="Contact" type="button" class="btn btn-primary"></custom-button>
     </div>
       
     </div>
@@ -28,11 +31,12 @@
 import type { Coach } from '@/types/CoachType'
 import CustomButton from './customComponents/CustomButton.vue';
 
-import type { PropType } from 'vue'
+import {type PropType, ref } from 'vue'
 
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
+const toggleDetails = ref(false)
 
 defineProps({
   coach: {
@@ -41,6 +45,9 @@ defineProps({
 })
 
 const handleDetailsPage = () => {
-router.push({path: '/details'})
+toggleDetails.value = !toggleDetails.value
 }
 </script>
+<style scoped>
+
+</style>

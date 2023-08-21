@@ -1,7 +1,7 @@
 <template>
     <div v-if="mockedCoaches.length" class="container mb-4">
-      <div class="row">
-        <div class="col col-6 col-md-4 col-sm-2 align-items-center justify-content-center" v-for="coach in slice ? mockedCoaches.slice(-slice) : mockedCoaches" :key="coach.id">
+      <div class="row  justify-content-center">
+        <div class="col col-6 col-md-3 col-sm-2 " v-for="coach in slice ? coaches.slice(-slice) : coaches" :key="coach.id">
           <CoachCard :coach="coach"></CoachCard>
         </div> 
       </div>
@@ -17,11 +17,8 @@ import { mockedCoaches } from '@/mockData';
 
 const coaches = ref([])
 
-// TODO: call service
 onMounted(async () => {
  coaches.value = await getAllCoaches()
-console.log(coaches.value);
-
 })
 
 defineProps({
