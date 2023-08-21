@@ -51,7 +51,7 @@ public class Coach {
 			  inverseJoinColumns = @JoinColumn(name = "code", referencedColumnName = "code"))
 	private List<Area> areas;
 	
-	@OneToMany(mappedBy="coach")
+	@OneToMany(mappedBy="coach", cascade = {CascadeType.ALL})
 	private List<CoachRequest> coachRequest;
 	
 	

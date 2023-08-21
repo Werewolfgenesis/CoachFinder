@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class AreaService {
 	private final AreaRepository repo;
 	
-	
 	@Transactional(readOnly = true)
 	public List<AreaDTO> getAreas(){
 		return repo.findAll().stream()

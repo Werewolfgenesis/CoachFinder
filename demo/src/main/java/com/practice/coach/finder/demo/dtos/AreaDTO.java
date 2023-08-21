@@ -1,7 +1,5 @@
 package com.practice.coach.finder.demo.dtos;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
