@@ -38,4 +38,9 @@ public class CoachRestController {
 		service.addRequestToCoach(dto.getEmail(), dto.getMessage(), Long.valueOf(id));
 	}
 	
+	@PostMapping("/filter")
+	public List<CoachDTO> filter(@RequestBody List<String> areas){
+		return service.filterCoaches(areas);
+	}
+	
 }
