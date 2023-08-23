@@ -1,4 +1,4 @@
-export type area = {
+export type Area = {
     code: string,
     desc: string
 }
@@ -8,7 +8,7 @@ export type Coach = {
     firstName: string,
     lastName: string,
     description: string,
-    areas: area[],
+    areas: Area[],
     rate: number
 }
 

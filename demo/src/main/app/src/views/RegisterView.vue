@@ -60,7 +60,7 @@ import CustomButton from '@/components/customComponents/CustomButton.vue'
 import { registerCoach, getAllAreas } from '@/services/CoachService'
 
 import type { area } from '@/types/CoachType'
-import { inject, onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required, minValue } from '@vuelidate/validators'
@@ -101,7 +101,6 @@ const v$ = useVuelidate(rules, {
 
 const handleSubmit = async (e) => {
   e.preventDefault()
-  console.log(firstName.value)
 
   const result = await v$.value.$validate()
   if (!result) {

@@ -1,8 +1,9 @@
-import type { Coach } from "@/types/CoachType";
+import type { Coach, Area } from "@/types/CoachType";
 import axios from "axios";
 
 const BASE_URL ='/private/api/'
 
+//COACH REQ-S
 export const getAllCoaches =async () => {
     try {
         
@@ -24,6 +25,18 @@ export const registerCoach = async (coach: any) => {
     }
 }
 
+export const getFilteredCoaches = async (chosedAreas: string[]) => {
+    try {
+        const response = await axios.post(BASE_URL + 'coaches/filter', chosedAreas)
+        return response.data;
+    } catch (err: any) {
+       console.log('Error:', err);
+       
+    }
+}
+
+
+//AREAS REQ-S
 export const getAllAreas = async () => {
     try {
         const response = await axios.get(BASE_URL + 'areas')
@@ -43,3 +56,4 @@ export const getAllRequests = async () => {
        
     }
 }
+
