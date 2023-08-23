@@ -6,6 +6,7 @@
         <label class="form-check-label" for="flexCheckDefault"> {{ area.desc }} </label>
       </div>
     </div>
+    <custom-button @click="handleRefresh" type="button" title="REFRESH"></custom-button>
   </div>
 </template>
 <script setup lang="ts">
@@ -13,6 +14,8 @@ import { mockedCoaches } from '@/mockData'
 import { computed, onMounted, ref } from 'vue'
 import { getAllAreas } from '@/services/CoachService';
 import type { Area } from '@/types/CoachType';
+
+import CustomButton from './customComponents/CustomButton.vue';
 
 onMounted(async() => {
   allAreas.value = await getAllAreas()
@@ -25,8 +28,12 @@ const areasSelected = ref<string[]>([])
 const emit = defineEmits(['handleFilters'])
 
 const handleFilters = () => {
-
 emit('handleFilters', areasSelected.value)
+}
+
+const handleRefresh = () => {
+  areasSelected.value = []
+  handleFilters()
 }
 
 </script>

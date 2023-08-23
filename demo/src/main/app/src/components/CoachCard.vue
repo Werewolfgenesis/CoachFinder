@@ -23,7 +23,7 @@
         </div>
         <div class="row">
           <div class="text-center">
-            <custom-button title="Contact" type="button" class="btn btn-primary"></custom-button>
+            <custom-button title="Contact" type="button"></custom-button>
           </div>
         </div>
       </div>

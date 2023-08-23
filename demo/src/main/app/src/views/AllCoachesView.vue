@@ -1,9 +1,7 @@
 <template>
   <div class="">
     <h2 style="color: #ff7730;">Find your coach:</h2>
-    
       <filter-checkboxes @handle-filters="handleFilters" ></filter-checkboxes>
-    
     <coach-list :filteredCoaches="filteredCoaches"></coach-list>
   </div>
 </template>
@@ -19,6 +17,8 @@ const filteredCoaches = ref<Coach[]>([])
 
 const handleFilters = async (filters: string[]) => {
   filteredCoaches.value = await getFilteredCoaches(filters) 
+  console.log(filteredCoaches.value);
+  
 }
 
 
