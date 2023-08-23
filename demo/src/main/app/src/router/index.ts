@@ -4,6 +4,7 @@ import AllCoachesView from '../views/AllCoachesView.vue'
 import DetailsView from '../views/DetailsView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import type { PropType } from 'vue'
+import RequestsViewVue from '@/views/RequestsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
+    },
+    {
+      path: '/all-requests',
+      name: 'all-requests',
+      component: RequestsViewVue,
     }
   ]
 })
