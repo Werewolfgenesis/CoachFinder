@@ -9,18 +9,19 @@
       </div>
       <div class="row">
         <div class="col" v-for="skill in coach?.areas" :key="skill.code">
-          <div>{{ skill.desc }} eerer </div>
+          <div>{{ skill }} </div>
         </div>
-        <div> eerer </div>
-          <div> eerer </div>
       </div>
     </div>
     <div class="custom-card__side custom-card__side--back d-flex align-items-center">
       <div class="m-auto container">
         <div class="row">
-          <!-- <div class="col"> -->
-          <p class="card-description text-center">I'm Reni. ethusiast with lot of skills which 'm Reni.rontend ethusiast with lot of skills which 'm Reni. Frontend ethusiast with lot of skills which I'm ready to share!</p>
-          <!-- </div> -->
+          <div v-if="coach?.description" class="col">
+          <p class="text-center">{{ coach?.description }}</p>
+          </div>
+          <div v-else> 
+            <p class="text-center">This coach hasn't got description</p>
+          </div>
         </div>
         <div class="row">
           <div class="text-center">
