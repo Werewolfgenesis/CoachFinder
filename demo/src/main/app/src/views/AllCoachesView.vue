@@ -7,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import FilterCheckboxes from '@/components/FilterCheckboxes.vue';
-import CoachList from '@/components/CoachList.vue';
+import CoachList from '@/components/cardsComponents/CoachList.vue';
 
 import { ref } from 'vue';
 import { getFilteredCoaches } from '@/services/CoachService';

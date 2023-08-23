@@ -83,12 +83,11 @@ const hourlyRate = ref(0)
 const skillsSelected = ref<string[]>([])
 
 const rules = {
-  firstName: { required }, // Matches state.firstName
-  lastName: { required }, // Matches state.lastName
+  firstName: { required }, 
+  lastName: { required }, 
   description: { required },
   hourlyRate: { required: required, minValue: minValue(0) },
   areas: { required }
-  // Matches state.contact.email
 }
 
 const v$ = useVuelidate(rules, {

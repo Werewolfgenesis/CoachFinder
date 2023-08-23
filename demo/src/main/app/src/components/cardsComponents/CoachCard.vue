@@ -32,7 +32,7 @@
 </template>
 <script setup lang="ts">
 import type { Coach } from '@/types/CoachType'
-import CustomButton from './customComponents/CustomButton.vue'
+import CustomButton from '../customComponents/CustomButton.vue'
 
 import { type PropType, ref } from 'vue'
 

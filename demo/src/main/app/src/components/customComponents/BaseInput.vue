@@ -29,7 +29,8 @@ defineProps({
     default: 'text'
   },
   errors: {
-    type: Object
+    type: Object,
+    required: false
   },
   area: {
     type: String,
