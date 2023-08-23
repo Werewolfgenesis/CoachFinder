@@ -1,5 +1,6 @@
 package com.practice.coach.finder.demo.services;
 
+import java.util.Collections;
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -54,5 +55,21 @@ public class CoachService {
 		coachToSave.getCoachRequest().add(requestToSave);
 
 		return coachRepo.save(coachToSave);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CoachDTO> filterCoaches(List<String> areas){
+		List<Area> areasToFilterBy = areas.stream().map(areaCode -> areaRepo.findById(areaCode).orElseThrow(EntityNotFoundException::new))
+				.collect(Collectors.toList());
+		
+		return coachRepo.findAll().stream().filter(coach -> !Collections.disjoint(coach.getAreas(), areasToFilterBy))
+				.map(coach -> new CoachDTO(coach.getId(), coach.getFirstName(), coach.getLastName(), coach.getRate(),
+						coach.getDescription(),
+						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
+						coach.getCoachRequest().stream()
+								.map(request -> new RequestDTO(request.getEmail(), request.getMessage()))
+								.collect(Collectors.toList())))
+				.collect(Collectors.toList());
+
 	}
 }
