@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import type { Coach } from '@/types/CoachType'
+import { type PropType } from 'vue'
+import ContactFormComponent from './ContactFormComponent.vue'
+import CustomButton from './customComponents/CustomButton.vue'
+
+// const toggleDetails = ref(false)
+
+const props = defineProps({
+  coach: {
+    type: Object as PropType<Coach>
+  }
+})
+
+const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
+// const handleDetailsPage = () => {
+//   toggleDetails.value = !toggleDetails.value
+// }
+</script>
+
 <template>
   <div class="custom-card m-auto">
     <div class="custom-card__side custom-card__side--front container text-center">
@@ -9,46 +29,44 @@
       </div>
       <div class="row">
         <div class="col" v-for="skill in coach?.areas" :key="skill.code">
-          <div>{{ skill.desc }} eerer </div>
+          <div>{{ skill.desc }} eerer</div>
         </div>
-        <div> eerer </div>
-          <div> eerer </div>
+        <div>eerer</div>
+        <div>eerer</div>
       </div>
     </div>
     <div class="custom-card__side custom-card__side--back d-flex align-items-center">
       <div class="m-auto container">
         <div class="row">
           <!-- <div class="col"> -->
-          <p class="card-description text-center">I'm Reni. ethusiast with lot of skills which 'm Reni.rontend ethusiast with lot of skills which 'm Reni. Frontend ethusiast with lot of skills which I'm ready to share!</p>
+          <p class="card-description text-center">
+            I'm Reni. ethusiast with lot of skills which 'm Reni.rontend ethusiast with lot of
+            skills which 'm Reni. Frontend ethusiast with lot of skills which I'm ready to share!
+          </p>
           <!-- </div> -->
         </div>
         <div class="row">
           <div class="text-center">
-            <custom-button title="Contact" type="button" class="btn btn-primary"></custom-button>
+            <custom-button
+              title="Contact"
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            ></custom-button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <ContactFormComponent
+    :title="title"
+    target="exampleModal"
+    body="tapak"
+    :coachId="props.coach.id"
+  />
 </template>
-<script setup lang="ts">
-import type { Coach } from '@/types/CoachType'
-import CustomButton from './customComponents/CustomButton.vue'
 
-import { type PropType, ref } from 'vue'
-
-// const toggleDetails = ref(false)
-
-defineProps({
-  coach: {
-    type: Object as PropType<Coach>
-  }
-})
-
-// const handleDetailsPage = () => {
-//   toggleDetails.value = !toggleDetails.value
-// }
-</script>
 <style>
 .custom-card {
   perspective: 150rem;
@@ -101,8 +119,6 @@ defineProps({
 .btn--orange:hover {
   background-color: #f0661c !important;
 }
-
-
 
 /* .animation:hover{
   position: absolute;

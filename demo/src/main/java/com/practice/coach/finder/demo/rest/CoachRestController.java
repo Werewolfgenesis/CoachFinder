@@ -34,8 +34,8 @@ public class CoachRestController {
 	}
 	
 	@PostMapping("/add-request")
-	public void addRequest(@RequestParam("id") String id ,@Valid @RequestBody RequestDTO dto) {
-		service.addRequestToCoach(dto.getEmail(), dto.getMessage(), Long.valueOf(id));
+	public void addRequest(@Valid @RequestBody RequestDTO dto) {
+		service.addRequestToCoach(dto.getEmail(), dto.getMessage(), Long.valueOf(dto.getId()));
 	}
 	
 	@PostMapping("/filter")
