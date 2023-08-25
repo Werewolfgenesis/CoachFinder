@@ -1,12 +1,11 @@
 <template>
-  <div v-if="requests.length" class="container mb-4 section-cards">
+  <div class="container mb-4 section-cards">
     <div class="row justify-content-center">
       <div class="col col-6 col-md-3 col-sm-2" v-for="req in requests" :key="req.coach.id">
         <RequestCard :email="req.email" :message="req.message"></RequestCard>
       </div>
     </div>
   </div>
-  <div v-else>THERE AREN'T ANY REQUESTS AT THE MOMENT</div>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
