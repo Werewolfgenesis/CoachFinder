@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const BASE_URL = '/private/api/'
 
+//COACH REQ-S
 export const getAllCoaches = async () => {
   try {
     const response = await axios.get(BASE_URL + 'coaches/all')
@@ -20,6 +21,16 @@ export const registerCoach = async (coach: any) => {
   }
 }
 
+export const getFilteredCoaches = async (chosedAreas: string[]) => {
+  try {
+    const response = await axios.post(BASE_URL + 'coaches/filter', chosedAreas)
+    return response.data
+  } catch (err: any) {
+    console.log('Error:', err)
+  }
+}
+
+//AREAS REQ-S
 export const getAllAreas = async () => {
   try {
     const response = await axios.get(BASE_URL + 'areas')
@@ -29,6 +40,7 @@ export const getAllAreas = async () => {
   }
 }
 
+//REQUEST REQ-S
 export const postRequest = async (email: string, message: string, id: string) => {
   try {
     await axios
@@ -39,7 +51,17 @@ export const postRequest = async (email: string, message: string, id: string) =>
       })
       .then(() => {
         alert('Success')
+        window.location.replace('/all-requests')
       })
+  } catch (err: any) {
+    console.log('Error:', err)
+  }
+}
+
+export const getAllRequests = async () => {
+  try {
+    const response = await axios.get(BASE_URL + 'requests')
+    return response.data
   } catch (err: any) {
     console.log('Error:', err)
   }

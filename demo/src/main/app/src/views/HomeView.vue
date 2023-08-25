@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
-import CoachList from '@/components/CoachList.vue';
+import CoachList from '@/components/cardsComponents/CoachList.vue';
 import HomeCarousel from '@/components/HomeCarousel.vue';
-import FilterCheckboxes from '@/components/FilterCheckboxes.vue';
 
 </script>
 

@@ -1,7 +1,9 @@
 <template>
-    <div v-if="mockedCoaches.length" class="container mb-4 section-cards">
+    <div v-if="coaches.length" class="container mb-4 section-cards">
       <div class="row  justify-content-center">
-        <div class="col col-6 col-md-3 col-sm-2 " v-for="coach in slice ? coaches.slice(-slice) : coaches" :key="coach.id">
+        <div class="col col-6 col-md-3 col-sm-2 "
+        v-for="coach in filteredCoaches?.length ? filteredCoaches : coaches" 
+        :key="coach.id">
           <CoachCard :coach="coach"></CoachCard>
         </div> 
       </div>
@@ -12,14 +14,14 @@
 import CoachCard from './CoachCard.vue';
 
 import { getAllCoaches } from '@/services/CoachService';
-import { onMounted, ref } from 'vue'
+import { onMounted, PropType, ref } from 'vue'
 import { mockedCoaches } from '@/mockData';
+import type { Coach } from '@/types/CoachType';
 
-const coaches = ref([])
+const coaches = ref<Coach[]>([])
 
 onMounted(async () => {
  coaches.value = await getAllCoaches()
- console.log(coaches.value);
  
 })
 
@@ -27,6 +29,10 @@ defineProps({
     slice: {
         type: Number,
         required: false
+    },
+    filteredCoaches: {
+      type: Object,
+      required: false,
     }
 })
 

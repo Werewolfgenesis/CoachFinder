@@ -1,21 +1,25 @@
 <template>
   <div class="">
     <h2 style="color: #ff7730;">Find your coach:</h2>
-    <filter-checkboxes></filter-checkboxes>
-    <coach-list></coach-list>
+      <filter-checkboxes @handle-filters="handleFilters" ></filter-checkboxes>
+    <coach-list :filteredCoaches="filteredCoaches"></coach-list>
   </div>
 </template>
 <script setup lang="ts">
-import { useCoachStore } from '@/stores/CouchStore';
 import FilterCheckboxes from '@/components/FilterCheckboxes.vue';
-import CoachList from '@/components/CoachList.vue';
+import CoachList from '@/components/cardsComponents/CoachList.vue';
 
-import { mockedCoaches } from '@/mockData';
 import { ref } from 'vue';
+import { getFilteredCoaches } from '@/services/CoachService';
+import type { Coach } from '@/types/CoachType';
 
-//TODO: api call for all coaches onMouted
+const filteredCoaches = ref<Coach[]>([])
 
-
+const handleFilters = async (filters: string[]) => {
+  filteredCoaches.value = await getFilteredCoaches(filters) 
+  console.log(filteredCoaches.value);
+  
+}
 
 
 </script>

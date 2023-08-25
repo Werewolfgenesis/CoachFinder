@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Coach } from '@/types/CoachType'
 import { type PropType } from 'vue'
-import ContactFormComponent from './ContactFormComponent.vue'
-import CustomButton from './customComponents/CustomButton.vue'
+import ContactFormComponent from '../ContactFormComponent.vue'
+//import CustomButton from './customComponents/CustomButton.vue'
+import CustomButton from '../customComponents/CustomButton.vue'
 
 // const toggleDetails = ref(false)
 
@@ -19,7 +20,7 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
 </script>
 
 <template>
-  <div class="custom-card m-auto">
+  <div class="custom-card mb-4">
     <div class="custom-card__side custom-card__side--front container text-center">
       <div class="row pt-4 pb-2">
         <div class="col text-center">
@@ -27,23 +28,19 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
           <div class="fs-4">${{ coach?.rate }}/hour</div>
         </div>
       </div>
-      <div class="row">
-        <div class="col" v-for="skill in coach?.areas" :key="skill.code">
-          <div>{{ skill.desc }} eerer</div>
-        </div>
-        <div>eerer</div>
-        <div>eerer</div>
-      </div>
+      <ul class="list-group" v-for="skill in coach?.areas" :key="skill.code">
+        <li>{{ skill }}</li>
+      </ul>
     </div>
     <div class="custom-card__side custom-card__side--back d-flex align-items-center">
       <div class="m-auto container">
         <div class="row">
-          <!-- <div class="col"> -->
-          <p class="card-description text-center">
-            I'm Reni. ethusiast with lot of skills which 'm Reni.rontend ethusiast with lot of
-            skills which 'm Reni. Frontend ethusiast with lot of skills which I'm ready to share!
-          </p>
-          <!-- </div> -->
+          <div v-if="coach?.description" class="col">
+            <p class="text-center">{{ coach?.description }}</p>
+          </div>
+          <div v-else>
+            <p class="text-center">This coach hasn't got description</p>
+          </div>
         </div>
         <div class="row">
           <div class="text-center">
@@ -68,6 +65,10 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
 </template>
 
 <style>
+ul {
+  list-style: none;
+}
+
 .custom-card {
   perspective: 150rem;
   -moz-perspective: 150rem;
