@@ -7,9 +7,10 @@ export type Coach = {
     id: number,
     firstName: string,
     lastName: string,
-    description: string,
+    description: string | null,
     areas: Area[],
-    rate: number
+    rate: number,
+    requests: []
 }
 
 export type CoachRequest = {

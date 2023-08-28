@@ -1,7 +1,7 @@
 <template>
   <div class="custom-card mb-4">
     <div class="custom-card__side custom-card__side--front container text-center">
-      <div class="row pt-4 pb-2">
+      <div class="row pt-4 pb-2"> 
         <div class="col text-center">
           <h5 class="card-title fs-3">{{ coach?.firstName }} {{ coach?.lastName }}</h5>
           <div class="fs-4">${{ coach?.rate }}/hour</div>
@@ -21,22 +21,14 @@
             <p class="text-center">This coach hasn't got description</p>
           </div>
         </div>
-        <div class="row">
-          <div class="text-center">
-            <custom-button title="Contact" type="button"></custom-button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import type { Coach } from '@/types/CoachType'
-import CustomButton from '../customComponents/CustomButton.vue'
 
 import { type PropType, ref } from 'vue'
-
-// const toggleDetails = ref(false)
 
 defineProps({
   coach: {
@@ -44,9 +36,6 @@ defineProps({
   }
 })
 
-// const handleDetailsPage = () => {
-//   toggleDetails.value = !toggleDetails.value
-// }
 </script>
 <style>
 
@@ -64,6 +53,7 @@ ul {
 .custom-card__side {
   color: white;
 
+  margin-top: 2rem;
   height: 20rem;
   transition: all 0.8s ease;
   position: absolute;
