@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import type { Coach } from '@/types/CoachType'
+import { type PropType } from 'vue'
+import ContactFormComponent from '../ContactFormComponent.vue'
+import CustomButton from '../customComponents/CustomButton.vue'
+
+const props = defineProps({
+  coach: {
+    type: Object as PropType<Coach>
+  }
+})
+
+const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
+</script>
+
 <template>
   <div class="custom-card mb-4">
     <div class="custom-card__side custom-card__side--front container text-center">
@@ -7,38 +22,43 @@
           <div class="fs-4">${{ coach?.rate }}/hour</div>
         </div>
       </div>
-        <ul class=" list-group" v-for="skill in coach?.areas" :key="skill.code">
-          <li>{{ skill }} </li>
-        </ul>
+      <ul class="list-group" v-for="skill in coach?.areas" :key="skill.code">
+        <li>{{ skill }}</li>
+      </ul>
     </div>
     <div class="custom-card__side custom-card__side--back d-flex align-items-center">
       <div class="m-auto container">
         <div class="row">
           <div v-if="coach?.description" class="col">
-          <p class="text-center">{{ coach?.description }}</p>
+            <p class="text-center">{{ coach?.description }}</p>
           </div>
-          <div v-else> 
+          <div v-else>
             <p class="text-center">This coach hasn't got description</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <custom-button
+              title="Contact"
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            ></custom-button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <ContactFormComponent
+    :title="title"
+    target="exampleModal"
+    body="tapak"
+    :coachId="props.coach.id"
+  />
 </template>
-<script setup lang="ts">
-import type { Coach } from '@/types/CoachType'
 
-import { type PropType, ref } from 'vue'
-
-defineProps({
-  coach: {
-    type: Object as PropType<Coach>
-  }
-})
-
-</script>
 <style>
-
 ul {
   list-style: none;
 }
@@ -95,8 +115,6 @@ ul {
 .btn--orange:hover {
   background-color: #f0661c !important;
 }
-
-
 
 /* .animation:hover{
   position: absolute;

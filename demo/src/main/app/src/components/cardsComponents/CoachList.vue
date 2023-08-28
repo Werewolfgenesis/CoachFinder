@@ -8,7 +8,7 @@
         </div> 
       </div>
     </div>
-    <div v-else>THERE AREN'T COACHES AT THE MOMENT</div>
+    <div v-else class="text-center mb-2" style="color: #ff7730;">THERE AREN'T COACHES AT THE MOMENT</div>
 </template>
 <script setup lang="ts">
 import CoachCard from './CoachCard.vue';

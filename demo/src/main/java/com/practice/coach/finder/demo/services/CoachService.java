@@ -34,7 +34,7 @@ public class CoachService {
 						coach.getDescription(),
 						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
 						coach.getCoachRequest().stream()
-								.map(request -> new RequestDTO(request.getEmail(), request.getMessage()))
+								.map(request -> new RequestDTO(request.getEmail(), request.getMessage(), coach.getId().toString()))
 								.collect(Collectors.toList())))
 				.collect(Collectors.toList());
 	}
@@ -62,7 +62,9 @@ public class CoachService {
 		List<Area> areasToFilterBy = areas.stream().map(areaCode -> areaRepo.findById(areaCode).orElseThrow(EntityNotFoundException::new))
 				.collect(Collectors.toList());
 		
-		return coachRepo.findAll().stream().filter(coach -> !Collections.disjoint(coach.getAreas(), areasToFilterBy))
+		return coachRepo.findAll()
+				.stream()
+				.filter(coach -> !Collections.disjoint(coach.getAreas(), areasToFilterBy))
 				.map(coach -> new CoachDTO(coach.getId(), coach.getFirstName(), coach.getLastName(), coach.getRate(),
 						coach.getDescription(),
 						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
@@ -70,6 +72,5 @@ public class CoachService {
 								.map(request -> new RequestDTO(request.getEmail(), request.getMessage()))
 								.collect(Collectors.toList())))
 				.collect(Collectors.toList());
-
 	}
 }
