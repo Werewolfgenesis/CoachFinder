@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RequestDTO {
-	//@Email
+	@Email
 	@NotBlank
 	private String email;
 	@NotBlank

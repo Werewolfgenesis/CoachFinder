@@ -69,7 +69,7 @@ public class CoachService {
 						coach.getDescription(),
 						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
 						coach.getCoachRequest().stream()
-								.map(request -> new RequestDTO(request.getEmail(), request.getMessage()))
+								.map(request -> new RequestDTO(request.getEmail(), request.getMessage(), coach.getId().toString()))
 								.collect(Collectors.toList())))
 				.collect(Collectors.toList());
 	}
