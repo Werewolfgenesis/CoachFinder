@@ -24,6 +24,8 @@ export const registerCoach = async (coach: any) => {
 export const getFilteredCoaches = async (chosedAreas: string[]) => {
   try {
     const response = await axios.post(BASE_URL + 'coaches/filter', chosedAreas)
+    console.log(response);
+    
     return response.data
   } catch (err: any) {
     console.log('Error:', err)

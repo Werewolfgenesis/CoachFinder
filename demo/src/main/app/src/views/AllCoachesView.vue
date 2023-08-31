@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <h2 style="color: #ff7730;">Find your coach:</h2>
+  <div class="p-2">
+    <h2 class="all-coaches__header">Find your coach:</h2>
       <filter-checkboxes @handle-filters="handleFilters" ></filter-checkboxes>
     <coach-list :filteredCoaches="filteredCoaches"></coach-list>
   </div>
@@ -25,4 +25,15 @@ const handleFilters = async (filters: string[]) => {
 </script>
 <style>
 
+.all-coaches__header {
+  display: inline-block;
+  background-image: linear-gradient(to right, rgba(226, 152, 112, 0.874), rgb(227, 84, 18));
+  -webkit-background-clip: text;
+  color: transparent;
+  
+  animation-name: leftToRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+}
 </style>

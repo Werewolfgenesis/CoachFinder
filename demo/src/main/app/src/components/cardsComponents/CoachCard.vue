@@ -19,21 +19,21 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
       <div class="row pt-4 pb-2"> 
         <div class="col text-center">
           <h5 class="card-title fs-3">{{ coach?.firstName }} {{ coach?.lastName }}</h5>
-          <div class="fs-4">${{ coach?.rate }}/hour</div>
+          <div class="fs-4 card__rate">${{ coach?.rate }}/hour</div>
         </div>
       </div>
-      <ul class="list-group" v-for="skill in coach?.areas" :key="skill.code">
-        <li>{{ skill }}</li>
+      <ul class="list-group " v-for="skill in coach?.areas" :key="skill.code">
+        <li class="card__skill">{{ skill }}</li>
       </ul>
     </div>
     <div class="custom-card__side custom-card__side--back d-flex align-items-center">
       <div class="m-auto container">
-        <div class="row">
+        <div class="row card_description">
           <div v-if="coach?.description" class="col">
-            <p class="text-center">{{ coach?.description }}</p>
+            <p class="text-center ">{{ coach?.description }}</p>
           </div>
           <div v-else>
-            <p class="text-center">This coach hasn't got description</p>
+            <p class="text-center ">This coach hasn't got description</p>
           </div>
         </div>
         <div class="row">
@@ -82,7 +82,8 @@ ul {
   width: 100%;
   backface-visibility: hidden;
   border-radius: 3px;
-  box-shadow: 0 1.5rem 4rem rgba(rgb(2, 2, 2), 0.15);
+  box-shadow:3rem 1.5rem 4rem rgba(black, .15);
+  /* box-shadow: 0 1.5rem 4rem rgba(rgb(2, 2, 2), 0.15); */
 }
 
 .custom-card:hover .custom-card__side {
@@ -91,7 +92,7 @@ ul {
 
 /* FRONT SIDE */
 .custom-card__side--front {
-  background-image: linear-gradient(to bottom right, #ff7730, #bbb);
+  background-image: linear-gradient(to right bottom, #bbb, #ff7730);
 }
 
 .custom-card:hover .custom-card__side--front {
@@ -100,8 +101,9 @@ ul {
 
 /* BACK SIDE */
 .custom-card__side--back {
-  background-image: linear-gradient(to right bottom, #bbb, #ff7730);
+  background-color: #eee;
   transform: rotateY(180deg);
+  
 }
 
 .custom-card:hover .custom-card__side--back {
@@ -116,10 +118,19 @@ ul {
   background-color: #f0661c !important;
 }
 
-/* .animation:hover{
-  position: absolute;
-  top: 50%;
-  left:50%;
-transform: translate(-50%, -50%);
-} */
+.card__skill {
+  border-bottom: 1px solid #f7f7f7;;
+}
+
+.card_description {
+  background-image: linear-gradient(to right, rgb(222, 175, 139), #ef5e10);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card__rate {
+  background-image: linear-gradient(to right, rgba(246, 237, 237, 0.989), #f7e0d9e7);
+  -webkit-background-clip: text;
+  color: transparent;
+}
 </style>

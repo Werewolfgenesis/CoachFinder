@@ -15,7 +15,6 @@ import CoachCard from './CoachCard.vue';
 
 import { getAllCoaches } from '@/services/CoachService';
 import { onMounted, PropType, ref } from 'vue'
-import { mockedCoaches } from '@/mockData';
 import type { Coach } from '@/types/CoachType';
 
 const coaches = ref<Coach[]>([])

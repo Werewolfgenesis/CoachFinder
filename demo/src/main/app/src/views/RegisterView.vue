@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center m-4">
-      <h2 style="color: #ff7730">REGISTER A COACH, NOW!</h2>
+      <h2 class="register__header">REGISTER A COACH, NOW!</h2>
     </div>
 
     <form>
@@ -116,3 +116,10 @@ const handleSubmit = async (e) => {
   router.push({ name: 'all' })
 }
 </script>
+<style scoped>
+.register__header {
+  background-image: linear-gradient(to right, rgb(222, 175, 139), #ef5e10);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>
