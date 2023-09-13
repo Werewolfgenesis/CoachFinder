@@ -101,6 +101,9 @@ const v$ = useVuelidate(rules, {
 const handleSubmit = async (e) => {
   e.preventDefault()
 
+  console.log(firstName, lastName);
+  
+
   const result = await v$.value.$validate()
   if (!result) {
     return

@@ -2,7 +2,7 @@
   <div class="p-2">
     <h2 class="all-coaches__header">Find your coach:</h2>
       <filter-checkboxes @handle-filters="handleFilters" ></filter-checkboxes>
-    <coach-list :filteredCoaches="filteredCoaches"></coach-list>
+    <coach-list :filteredCoaches="filteredCoaches" :filters="filter"></coach-list>
   </div>
 </template>
 <script setup lang="ts">
@@ -14,14 +14,12 @@ import { getFilteredCoaches } from '@/services/CoachService';
 import type { Coach } from '@/types/CoachType';
 
 const filteredCoaches = ref<Coach[]>([])
+const filter = ref<string[]>([])
 
 const handleFilters = async (filters: string[]) => {
   filteredCoaches.value = await getFilteredCoaches(filters) 
-  console.log(filteredCoaches.value);
-  
+  filter.value = filters
 }
-
-
 </script>
 <style>
 

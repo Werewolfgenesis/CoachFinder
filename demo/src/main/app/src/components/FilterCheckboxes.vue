@@ -24,6 +24,7 @@ onMounted(async() => {
 const allAreas = ref<Area[]>([])
 const areasSelected = ref<string[]>([])
 
+
 const emit = defineEmits(['handleFilters'])
 
 const handleFilters = () => {
