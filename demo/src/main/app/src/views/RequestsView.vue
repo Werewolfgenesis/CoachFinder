@@ -15,8 +15,8 @@
 import { onMounted, ref } from 'vue'
 
 import RequestCard from '@/components/cardsComponents/RequestCard.vue'
-import { getAllRequests } from '@/services/CoachService'
-import type { CoachRequest } from '@/types/CoachType'
+import { getAllRequests } from '@/services/CoachRequestService'
+import type { CoachRequest } from '@/types/CoachRequest'
 const requests = ref<CoachRequest[]>([])
 
 onMounted(async () => {
@@ -35,3 +35,4 @@ onMounted(async () => {
   animation-timing-function: ease-out;
 }
 </style>
+@/types/Coach

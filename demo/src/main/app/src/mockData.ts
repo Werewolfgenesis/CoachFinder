@@ -1,5 +1,5 @@
 
-import type {Coach} from '@/types/CoachType'
+import type {Coach} from '@/types/Coach'
 
 export const mockedCoaches: Coach[] = [
     {

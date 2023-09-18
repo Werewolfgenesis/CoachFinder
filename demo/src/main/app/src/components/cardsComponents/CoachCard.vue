@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Coach } from '@/types/CoachType'
+import type { Coach } from '@/types/Coach'
 import { type PropType } from 'vue'
 import ContactFormComponent from '../ContactFormComponent.vue'
 import CustomButton from '../customComponents/CustomButton.vue'
@@ -134,3 +134,4 @@ ul {
   color: transparent;
 }
 </style>
+@/types/Coach

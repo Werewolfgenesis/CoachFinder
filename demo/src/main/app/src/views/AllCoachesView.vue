@@ -35,3 +35,4 @@ const handleFilters = async (filters: string[]) => {
 
 }
 </style>
+@/types/Coach

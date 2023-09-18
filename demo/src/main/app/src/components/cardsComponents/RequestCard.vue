@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CoachRequest } from "@/types/CoachType";
+import type { CoachRequest } from "@/types/CoachRequest";
 import type { PropType } from "vue";
 
 const props = defineProps({

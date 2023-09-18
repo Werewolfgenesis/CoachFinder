@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="coaches.length" class="container mb-4 section-cards">
-      <div v-if="filters?.length && !filteredCoaches.length" class="text-center mb-2" style="color: #ff7730;">THERE AREN'T COACHES WITH THIS SKILL</div>
+      <div v-if="filters?.length && !filteredCoaches?.length" class="text-center mb-2" style="color: #ff7730;">THERE AREN'T COACHES WITH THIS SKILL</div>
       <div v-else>
         <div class="row  justify-content-center">
         <div class="col col-6 col-md-3 col-sm-2"
@@ -22,7 +22,7 @@ import CoachCard from './CoachCard.vue';
 
 import { getAllCoaches } from '@/services/CoachService';
 import { onMounted, PropType, ref } from 'vue'
-import { Coach } from '@/types/CoachType';
+import { Coach } from '@/types/Coach';
 
 const coaches = ref<Coach[]>([])
 
@@ -35,7 +35,7 @@ const props = defineProps({
     },
     filteredCoaches: {
       type: Object as PropType<Coach[]>,
-      required: true,
+      required: false,
     },
     filters: {
       type: Array,

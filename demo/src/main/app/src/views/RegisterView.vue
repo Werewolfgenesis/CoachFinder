@@ -57,9 +57,10 @@
 </template>
 <script setup lang="ts">
 import CustomButton from '@/components/customComponents/CustomButton.vue'
-import { registerCoach, getAllAreas } from '@/services/CoachService'
+import { registerCoach } from '@/services/CoachService'
+import { getAllAreas } from '@/services/AreaService'
 
-import type { area } from '@/types/CoachType'
+import type { area } from '@/types/Area'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
@@ -125,4 +126,4 @@ const handleSubmit = async (e) => {
   -webkit-background-clip: text;
   color: transparent;
 }
-</style>
+</style>@/types/Coach

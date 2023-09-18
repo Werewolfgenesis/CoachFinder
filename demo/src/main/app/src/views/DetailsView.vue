@@ -29,3 +29,4 @@ import CustomButton from '@/components/customComponents/CustomButton.vue';
 import type { Coach } from '@/types/CoachType';
 
 </script>
+@/types/Coach

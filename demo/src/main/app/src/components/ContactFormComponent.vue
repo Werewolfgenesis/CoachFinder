@@ -60,7 +60,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { postRequest } from '../services/CoachService'
+import { postRequest } from '../services/CoachRequestService'
 const email = ref('')
 const message = ref('')
 const props = defineProps({
@@ -76,7 +76,7 @@ const props = defineProps({
     type: String
   },
   coachId: {
-    type: String,
+    type: Number,
     required: true
   }
 })
