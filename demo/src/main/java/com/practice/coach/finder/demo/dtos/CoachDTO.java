@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CoachDTO {
-	@NotBlank(message = "Coach id must not be empty")
 	private Long id;
 	@NotBlank(message = "First name must not be empty")
 	private String firstName;
