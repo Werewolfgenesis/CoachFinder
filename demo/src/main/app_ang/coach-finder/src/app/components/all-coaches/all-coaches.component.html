@@ -1,1 +1,22 @@
-<p *ngFor="let coach of allCoaches">{{ coach.firstName }}</p>
+<div class="content">
+  <div>
+    <div *ngFor="let area of allAreas">
+      <div class="">
+        <mat-checkbox class="" type="checkbox" />
+        <label class=""> {{ area.desc }} </label>
+      </div>
+    </div>
+    <button  mat-raised-button type="button" title="REFRESH">FILTER</button>
+  </div>
+
+  <div class="mt-small" fxLayout="row wrap" fxLayoutGap="16px">
+    <div
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let coach of allCoaches"
+    >
+      <app-coach-card [coach]="coach"></app-coach-card>
+    </div>
+  </div>
+</div>

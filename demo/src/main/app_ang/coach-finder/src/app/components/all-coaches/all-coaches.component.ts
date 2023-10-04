@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Area } from 'src/app/model/Area';
 import { Coach } from 'src/app/model/Coach';
+import { AreasService } from 'src/app/services/areas.service';
 import { CoachService } from 'src/app/services/coach.service';
 
 @Component({
@@ -8,17 +10,35 @@ import { CoachService } from 'src/app/services/coach.service';
   styleUrls: ['./all-coaches.component.css'],
 })
 export class AllCoachesComponent implements OnInit {
-  allCoaches: Coach[] = [];
-  constructor(private readonly service: CoachService) {}
+
+  allCoaches: Coach[];
+  allAreas: Area[];
+
+
+  constructor(private readonly coachService: CoachService, private areasService: AreasService) {}
   ngOnInit() {
     this.fetchCoaches();
+    this.fetchAreas();
   }
 
   fetchCoaches() {
-    this.service.getAllCoaches().subscribe((response) => {
+    this.coachService.getAllCoaches().subscribe((response) => {
       if (response) {
         this.allCoaches = response;
       }
     });
+  }
+
+  fetchAreas() {
+    this.areasService.getAllAreas().subscribe((response) => {
+      if(response) {
+        this.allAreas = response;
+      }
+    })
+  }
+
+
+  selectedFilter(checkbox: Event) {
+    console.log(checkbox)
   }
 }
