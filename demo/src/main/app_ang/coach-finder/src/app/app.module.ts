@@ -16,11 +16,20 @@ import {MatCardModule} from '@angular/material/card';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
+import {MatListModule, MatSelectionList} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ContactDialogComponent } from './components/all-coaches/contact-dialog/contact-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, AllCoachesComponent, CoachCardComponent, NavigationComponent, RequestsComponent, RegisterComponent],
+  declarations: [AppComponent, AllCoachesComponent, CoachCardComponent, NavigationComponent, RequestsComponent, RegisterComponent, ContactDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +41,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     MatToolbarModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

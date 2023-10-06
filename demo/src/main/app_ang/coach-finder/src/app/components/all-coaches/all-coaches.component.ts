@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Area } from 'src/app/model/Area';
 import { Coach } from 'src/app/model/Coach';
 import { AreasService } from 'src/app/services/areas.service';
@@ -13,7 +13,7 @@ export class AllCoachesComponent implements OnInit {
 
   allCoaches: Coach[];
   allAreas: Area[];
-
+  selectedCheckboxes: Set<string> = new Set();
 
   constructor(private readonly coachService: CoachService, private areasService: AreasService) {}
   ngOnInit() {
@@ -38,7 +38,20 @@ export class AllCoachesComponent implements OnInit {
   }
 
 
-  selectedFilter(checkbox: Event) {
-    console.log(checkbox)
+onCheckboxChange(selected: string, isChecked: boolean) {
+  if(isChecked) {
+    this.selectedCheckboxes.add(selected)
+  } else {
+    this.selectedCheckboxes.delete(selected)
   }
+}
+
+
+onFilter() {
+  console.log(this.selectedCheckboxes);
+  
+// TODO: filter logic
+
+}
+
 }
