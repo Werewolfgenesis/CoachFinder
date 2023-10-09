@@ -33,6 +33,6 @@ export class ContactDialogComponent {
 
     console.log(request);
     
-    this.coachService.addRequest(request);
+    this.coachService.addRequest(request).subscribe();
   }
 }
