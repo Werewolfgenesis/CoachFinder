@@ -10,12 +10,17 @@ import { CoachService } from 'src/app/services/coach.service';
   styleUrls: ['./all-coaches.component.css'],
 })
 export class AllCoachesComponent implements OnInit {
-
   allCoaches: Coach[];
+  currentCoaches: Coach[];
   allAreas: Area[];
-  selectedCheckboxes: Set<string> = new Set();
 
-  constructor(private readonly coachService: CoachService, private areasService: AreasService) {}
+  selectedCheckboxes: string[] = [];
+  filteredCoaches: Set<Coach> = new Set();
+
+  constructor(
+    private readonly coachService: CoachService,
+    private areasService: AreasService
+  ) {}
   ngOnInit() {
     this.fetchCoaches();
     this.fetchAreas();
@@ -25,33 +30,46 @@ export class AllCoachesComponent implements OnInit {
     this.coachService.getAllCoaches().subscribe((response) => {
       if (response) {
         this.allCoaches = response;
+        this.currentCoaches = this.allCoaches;
       }
     });
   }
 
   fetchAreas() {
     this.areasService.getAllAreas().subscribe((response) => {
-      if(response) {
+      if (response) {
         this.allAreas = response;
       }
-    })
+    });
   }
 
-
-onCheckboxChange(selected: string, isChecked: boolean) {
-  if(isChecked) {
-    this.selectedCheckboxes.add(selected)
-  } else {
-    this.selectedCheckboxes.delete(selected)
+  onCheckboxChange(selected: string, isChecked: boolean) {
+    if (isChecked) {
+      this.selectedCheckboxes.push(selected);
+    } else {
+      let startIndex = this.selectedCheckboxes.indexOf(selected)
+      this.selectedCheckboxes.splice(startIndex, 1);
+    }
   }
-}
 
+  onFilter() {
 
-onFilter() {
-  console.log(this.selectedCheckboxes);
-  
-// TODO: filter logic
+    if (this.selectedCheckboxes.length == 0) {
+     return this.currentCoaches = this.allCoaches;
+     }
 
-}
+      for (let coach of this.allCoaches) {
+        if (coach.areas.some((ar) => this.selectedCheckboxes.includes(ar))) {
+          this.filteredCoaches.add(coach);
+        }
+        else{
+          this.filteredCoaches.delete(coach)
+        }
+      }
+      
+     this.currentCoaches = Array.from(this.filteredCoaches) 
+     return this.currentCoaches;
+      
 
+  }
 }
