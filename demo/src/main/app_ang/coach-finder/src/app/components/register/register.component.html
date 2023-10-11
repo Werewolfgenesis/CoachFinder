@@ -1,4 +1,4 @@
-<form [formGroup]="profileForm" class="form-container" (onSubmit)="submitForm()">
+<form [formGroup]="profileForm" class="form-container" (ngSubmit)="submitForm()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Coach Register</mat-card-title>
@@ -24,7 +24,7 @@
           <mat-form-field class="full-width">
             <mat-label>Rate</mat-label>
             <input type="number"   formControlName="rate" matInput placeholder="Rate">
-            <mat-error min="0" *ngIf="profileForm.controls['rate'].hasError('min')">Minimum value is 0!</mat-error>
+            <mat-error *ngIf="profileForm.controls['rate'].hasError('min')">Minimum value is 0!</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -38,16 +38,13 @@
       </div>
       <div class="row">
           <div class="col-md-12">    
-            <mat-label>Select your area:</mat-label>        
-                <mat-checkbox  *ngFor="let area of allAreas"  #ch  (change)="onCheckboxChange(area.code, ch.checked)"> {{ area.desc }}</mat-checkbox>          
-            <mat-error  *ngIf="selectedCheckboxes.length==0">Choose at least one option!</mat-error>
-
-              <!-- <mat-checkbox formControlName="areas" #ch *ngFor="let area of allAreas" (change)="onCheckboxChange(area.code, ch.checked)"> {{ area.desc }}</mat-checkbox> -->
+            <mat-label>Select your area* :</mat-label>        
+                <mat-checkbox *ngFor="let area of allAreas"  #ch  (change)="onCheckboxChange(area.code, ch.checked)"> {{ area.desc }}</mat-checkbox>          
           </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button  type="submit" (click)="submitForm()" mat-raised-button color="primary">Submit</button>
+      <button [disabled]="profileForm.invalid || selectedCheckboxes.length==0" type="submit"  mat-raised-button color="primary">Submit</button>
 
     </mat-card-actions>
   </mat-card>

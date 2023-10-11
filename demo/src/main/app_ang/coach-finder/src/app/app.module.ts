@@ -16,7 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatListModule, MatSelectionList} from '@angular/material/list';
+import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -27,9 +27,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ContactDialogComponent } from './components/all-coaches/contact-dialog/contact-dialog.component';
+import { RequestCardComponent } from './components/requests/request-card/request-card.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table'
+
 
 @NgModule({
-  declarations: [AppComponent, AllCoachesComponent, CoachCardComponent, NavigationComponent, RequestsComponent, RegisterComponent, ContactDialogComponent],
+  declarations: [AppComponent, AllCoachesComponent, CoachCardComponent, NavigationComponent, RequestsComponent, RegisterComponent, ContactDialogComponent, RequestCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -50,7 +54,9 @@ import { ContactDialogComponent } from './components/all-coaches/contact-dialog/
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

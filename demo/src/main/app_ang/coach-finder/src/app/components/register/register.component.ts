@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Form,
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +15,6 @@ import { CoachService } from 'src/app/services/coach.service';
 })
 export class RegisterComponent implements OnInit {
   allAreas: Area[] = [];
-  // selectedCheckboxes: Set<Area> = new Set();
   selectedCheckboxes: string[] = [];
 
   constructor(
@@ -32,9 +28,7 @@ export class RegisterComponent implements OnInit {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     description: [''],
-    areas: [this.allAreas.forEach(area => area.code), Validators.required],
-    rate: ['', [Validators.min(0)]],
-    password: ['', Validators.required],
+    rate: ['', [Validators.min(0), Validators.required]],
   });
 
   
@@ -62,16 +56,18 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
+
     const coach: Object = {
       ...this.profileForm.value,
       areas: this.selectedCheckboxes,
     };
- 
     
     this.coachService.registerCoach(coach).subscribe((res) => {
       this.router.navigate(['/all-coaches']);
     });
-    
-    console.log(this.profileForm.invalid);
+   
   }
+
+
+
 }

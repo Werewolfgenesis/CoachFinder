@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Coach } from '../model/Coach';
+import { CoachRequest } from '../model/CoachRequest';
 
 // export type RegisterObject = {
 //   firstName: string,
@@ -23,11 +24,24 @@ export class CoachService {
     return this.httpClient.get<Coach[]>(this.BASE_URL + '/all');
   }
 
+  indexAll(page: number, limit: number): Observable<Coach[]> {
+    let params = new HttpParams();
+
+    params = params.append('page', String(page));
+    params = params.append('limit', String(limit));
+
+    return this.httpClient.get<Coach[]>(this.BASE_URL + '/all', {params});
+  }
+  
+  getFilteredCoaches(chosedAreas: string[]): Observable<Coach[]> {
+    return this.httpClient.post<Coach[]>(this.BASE_URL + 'filter', chosedAreas);
+  }
+// TODO: types for object
   registerCoach(coach: Object) {
     return this.httpClient.post<Coach>(this.BASE_URL, coach);
   }
-
-  getFilteredCoaches(chosedAreas: string[]): Observable<Coach[]> {
-    return this.httpClient.post<Coach[]>(this.BASE_URL + 'filter', chosedAreas);
+// TODO: types for object
+  addRequest(request: Object) {
+    return this.httpClient.post<Object>(this.BASE_URL + '/add-request', request);
   }
 }

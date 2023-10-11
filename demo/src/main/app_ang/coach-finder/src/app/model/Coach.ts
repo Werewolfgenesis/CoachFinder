@@ -5,7 +5,7 @@ export interface Coach {
   firstName: string;
   lastName: string;
   description: string | null;
-  areas: Area[];
+  areas: string[];
   rate: number;
   requests: [];
 }

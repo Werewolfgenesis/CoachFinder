@@ -1,1 +1,6 @@
-<p>requests works!</p>
+<h2>Coaches requests:</h2>
+<mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let request of allRequests">
+      <app-request-card [request]="request"></app-request-card>
+    </mat-grid-tile>
+  </mat-grid-list>
