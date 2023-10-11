@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RequestResponseDTO {
-	@Email
-	@NotBlank
+	@Email(message = "Value must have email format")
+	@NotBlank(message = "Email cannot be empty")
 	private String email;
-	@NotBlank
+	@NotBlank(message = "Message cannot be empty")
 	private String message;
-	@NotNull
+	@NotNull(message = "Coach cannot be null")
 	private CoachDTO coach;
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/private/api/coaches")
 @RequiredArgsConstructor
+@Validated
 public class CoachRestController {
 	private final CoachService service;
 	
@@ -29,7 +32,7 @@ public class CoachRestController {
 	}
 	
 	@PostMapping
-	public void register(@Valid @RequestBody CoachDTO dto) {
+	public void register(@RequestBody @Valid CoachDTO dto) {
 		service.registerCoach(dto.getFirstName(), dto.getLastName(), dto.getRate(), dto.getDescription(),dto.getAreas());
 	}
 	
@@ -38,8 +41,8 @@ public class CoachRestController {
 		service.addRequestToCoach(dto.getEmail(), dto.getMessage(), Long.valueOf(dto.getId()));
 	}
 	
-	@PostMapping("/filter")
-	public List<CoachDTO> filter(@RequestBody List<String> areas){
+	@GetMapping("/filter")
+	public List<CoachDTO> filter(@RequestParam List<String> areas){
 		return service.filterCoaches(areas);
 	}
 	
