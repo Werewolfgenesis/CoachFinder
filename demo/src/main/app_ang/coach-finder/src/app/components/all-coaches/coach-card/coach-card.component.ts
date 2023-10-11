@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Coach } from 'src/app/model/Coach';
 import { ContactDialogComponent } from '../contact-dialog/contact-dialog.component';
+
 
 
 @Component({

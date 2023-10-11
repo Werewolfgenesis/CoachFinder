@@ -12,9 +12,38 @@
 
     <button (click)="onFilter()" mat-raised-button type="button">FILTER</button>
   </div>
+
   <mat-grid-list cols="3" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let coach of currentCoaches">
+    <mat-grid-tile *ngFor="let coach of visibleItems">
       <app-coach-card [coach]="coach"></app-coach-card>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <mat-form-field>
+    <mat-label>Items per page</mat-label>
+    <mat-select [(value)]="selectedItemsPerPage" (selectionChange)="setItemsPerPage()">
+      <mat-option selected [value]="3">3</mat-option>
+      <mat-option [value]="5">5</mat-option>
+      <mat-option [value]="20">20</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <span (click)="onPreviosPage()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </span>
+    <span
+      *ngFor="let page of pages"
+      style="cursor: pointer; font-size: large"
+      (click)="onPageClick(page)"
+    >
+      <span [ngClass]="{ active: page == currentPage }">
+        {{ page }}
+      </span>
+      |
+    </span>
+    <span (click)="onNextPage()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </span>
+  </div>
 </div>
