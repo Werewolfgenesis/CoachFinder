@@ -59,7 +59,7 @@
 import CustomButton from '@/components/customComponents/CustomButton.vue'
 import { registerCoach, getAllAreas } from '@/services/CoachService'
 
-import type { area } from '@/types/CoachType'
+import type { Area } from '@/types/CoachType'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
@@ -74,7 +74,7 @@ onMounted(async () => {
   areas.value = result
 })
 
-const areas = ref<area[]>([])
+const areas = ref<Area[]>([])
 
 const firstName = ref('')
 const lastName = ref('')
