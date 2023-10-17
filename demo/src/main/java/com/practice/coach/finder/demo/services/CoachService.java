@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,18 +58,19 @@ public class CoachService {
 
 		return coachRepo.save(coachToSave);
 	}
-	
+
 	@Transactional(readOnly = true)
-	public List<CoachDTO> filterCoaches(List<String> areas){
-		List<Area> areasToFilterBy = areas.stream().map(areaCode -> areaRepo.findById(areaCode).orElseThrow(EntityNotFoundException::new))
-				.collect(Collectors.toList());
-		
-		return coachRepo.findAll()
-				.stream()
-				.filter(coach -> !Collections.disjoint(coach.getAreas(), areasToFilterBy))
+	public List<CoachDTO> filterCoaches(List<String> areas, Integer pageNo, Integer pageSize){
+		Pageable pageable = PageRequest.of(pageNo, pageSize);
+		List<Coach> resultSet = coachRepo.getFilteredCoaches(areas, pageable);
+		//		List<Coach> resultSet = coachRepo.getFilteredCoaches(areas, pageable)
+//				.stream()
+//				.map(id -> coachRepo.findById(id).orElseThrow(EntityNotFoundException::new))
+//				.collect(Collectors.toList());
+		return resultSet.stream()
 				.map(coach -> new CoachDTO(coach.getId(), coach.getFirstName(), coach.getLastName(), coach.getRate(),
 						coach.getDescription(),
-						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
+						coach.getAreas().stream().map(Area::getFullDesc).collect(Collectors.toList()),
 						coach.getCoachRequest().stream()
 								.map(request -> new RequestDTO(request.getEmail(), request.getMessage(), coach.getId().toString()))
 								.collect(Collectors.toList())))
