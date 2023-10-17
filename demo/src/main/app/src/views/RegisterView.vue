@@ -57,7 +57,8 @@
 </template>
 <script setup lang="ts">
 import CustomButton from '@/components/customComponents/CustomButton.vue'
-import { registerCoach, getAllAreas } from '@/services/CoachService'
+import { registerCoach } from '@/services/CoachService'
+import { getAllAreas } from '@/services/AreaService'
 
 import type { Area } from '@/types/CoachType'
 import { onMounted, ref } from 'vue'
@@ -101,6 +102,9 @@ const v$ = useVuelidate(rules, {
 const handleSubmit = async (e) => {
   e.preventDefault()
 
+  console.log(firstName, lastName);
+  
+
   const result = await v$.value.$validate()
   if (!result) {
     return
@@ -122,4 +126,4 @@ const handleSubmit = async (e) => {
   -webkit-background-clip: text;
   color: transparent;
 }
-</style>
+</style>@/types/Coach

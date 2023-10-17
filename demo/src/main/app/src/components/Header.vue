@@ -3,7 +3,7 @@
      <div
     id="navbar"
     class="p-5 text-center bg-image "
-    style=" background-position: center; background-image: url('https://s3-ap-southeast-2.amazonaws.com/geg-gug-webapp/images/1557364192-work_while_you_study_banner.jpg');
+    style=" background-position: center; background-image: url('../../public/img/header-photo.jpg');
     "
   >
     <div class="mask headerAnimation" style="background-color: rgba(0, 0, 0, 0.7);">

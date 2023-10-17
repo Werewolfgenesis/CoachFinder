@@ -42,8 +42,10 @@ public class CoachRestController {
 	}
 	
 	@GetMapping("/filter")
-	public List<CoachDTO> filter(@RequestParam List<String> areas){
-		return service.filterCoaches(areas);
+	public List<CoachDTO> filter(@RequestParam List<String> areas,
+								 @RequestParam Integer pageNo,
+								 @RequestParam Integer pageSize){
+		return service.filterCoaches(areas, pageNo, pageSize);
 	}
 	
 }

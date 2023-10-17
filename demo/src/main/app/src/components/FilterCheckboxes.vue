@@ -11,8 +11,8 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { getAllAreas } from '@/services/CoachService';
-import type { Area } from '@/types/CoachType';
+import { getAllAreas } from '@/services/AreaService';
+import type { Area } from '@/types/Area';
 
 import CustomButton from './customComponents/CustomButton.vue';
 
@@ -23,6 +23,7 @@ onMounted(async() => {
 
 const allAreas = ref<Area[]>([])
 const areasSelected = ref<string[]>([])
+
 
 const emit = defineEmits(['handleFilters'])
 
@@ -36,4 +37,3 @@ const handleRefresh = () => {
 }
 
 </script>
- 
