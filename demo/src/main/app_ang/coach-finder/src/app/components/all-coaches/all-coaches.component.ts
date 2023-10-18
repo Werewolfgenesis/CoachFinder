@@ -16,22 +16,14 @@ export class AllCoachesComponent implements OnInit {
   allAreas: Area[];
 
 
+  hasItems: boolean = true;
+
   //FILTERS
   selectedCheckboxes: string[] = [];
-  filteredCoaches: Set<Coach> = new Set();
-
 
   //PAGINATION
-  numOfTotalPages: number;
-  pages: number[];
- 
-  itemsPerpage = 3;
   currentPage = 1;
-  indexOfLastItem = this.itemsPerpage;
-  indexOfFirstItem = 0;
-
-  visibleItems: Coach[];
-  selectedItemsPerPage: number = 3;
+  selectedItemsPerPage: number;
 
   constructor(
     private readonly coachService: CoachService,
@@ -44,46 +36,9 @@ export class AllCoachesComponent implements OnInit {
       this.fetchAreas();
 
   }
-
-  onPagination() {
-
-    this.numOfTotalPages = Math.ceil(this.currentCoaches.length/this.itemsPerpage)
-    this.pages = [...Array(this.numOfTotalPages + 1).keys()].slice(1)
-
-    this.indexOfLastItem = this.currentPage * this.itemsPerpage;
-    this.indexOfFirstItem = this.indexOfLastItem - this.itemsPerpage;
-    this.visibleItems = this.currentCoaches.slice(this.indexOfFirstItem, this.indexOfLastItem)
-  }
   
 
-  onPageClick(page: number) {
-    
-    this.currentPage = page;
-
-    this.onPagination()
-
-  }
-
-  onPreviosPage() {
-    if(this.currentPage !==1) {
-      this.currentPage-=1;
-      this.onPagination()
-    }
-  }
-
-  onNextPage() {
-    if(this.currentPage < this.numOfTotalPages) {
-      this.currentPage+=1;
-      this.onPagination()
-    }
-  }
-
-  setItemsPerPage() {
-    this.itemsPerpage = this.selectedItemsPerPage;
-    this.currentPage = 1;
-    this.onPagination()
-    
-  }
+ 
 
 
   fetchCoaches() {
@@ -91,7 +46,6 @@ export class AllCoachesComponent implements OnInit {
       if (response) {
         this.allCoaches = response;
         this.currentCoaches = this.allCoaches;
-        this.onPagination()
       }
     });
   }
@@ -104,35 +58,66 @@ export class AllCoachesComponent implements OnInit {
     });
   }
 
-  onCheckboxChange(selected: string, isChecked: boolean) {
+
+  filterCoaches() {
+    this.coachService.getFilteredCoaches(this.selectedCheckboxes, this.currentPage-1, this.selectedItemsPerPage)
+    .subscribe(response => {
+      if(response) {  
+       this.currentCoaches = response
+      } 
+    })
+  }
+
+
+  onPreviosPage() {
+    if(this.currentPage !==1) {
+      this.currentPage-=1;
+      this.filterCoaches()
+    }
+  }
+
+  onNextPage() {
+      this.currentPage+=1;
+ 
+      if(!this.selectedItemsPerPage) {
+        this.selectedItemsPerPage = 3
+        this.filterCoaches()
+      }
+      
+        this.filterCoaches()
+
+  }
+
+  setItemsPerPage() {
+    this.selectedItemsPerPage = this.selectedItemsPerPage;
+    this.currentPage = 1;
+    
+  }
+
+
+
+  onCheckboxChange(selected: Area, isChecked: boolean) {
     if (isChecked) {
-      this.selectedCheckboxes.push(selected);
+      this.selectedCheckboxes.push(selected.code);
     } else {
-      let startIndex = this.selectedCheckboxes.indexOf(selected)
+      let startIndex = this.selectedCheckboxes.indexOf(selected.code)
       this.selectedCheckboxes.splice(startIndex, 1);
     }
   }
 
   onFilter() {
 
-    if (this.selectedCheckboxes.length == 0) {
-
+    if (this.selectedCheckboxes.length == 0 ) {
       this.currentCoaches = this.allCoaches;
-      this.onPagination()
       return
      }
 
-      for (let coach of this.allCoaches) {
-        if (coach.areas.some((ar) => this.selectedCheckboxes.includes(ar))) {
-          this.filteredCoaches.add(coach);
-        }
-        else{
-          this.filteredCoaches.delete(coach)
-        }
-      }
+     if(!this.selectedItemsPerPage) {
+      this.selectedItemsPerPage = 3;
+    }
+
+    this.filterCoaches()
+    return
       
-     this.currentCoaches = Array.from(this.filteredCoaches) 
-      this.onPagination()
-      return
   }
 }

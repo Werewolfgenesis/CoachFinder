@@ -6,3 +6,11 @@
     color: purple;
     font-weight: 700;
 }
+
+.noItems {
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 25px;
+    width: 400px;
+    margin: 20px auto;
+}

@@ -33,8 +33,13 @@ export class CoachService {
     return this.httpClient.get<Coach[]>(this.BASE_URL + '/all', {params});
   }
   
-  getFilteredCoaches(chosedAreas: string[]): Observable<Coach[]> {
-    return this.httpClient.post<Coach[]>(this.BASE_URL + 'filter', chosedAreas);
+  getFilteredCoaches(chosedAreas: string[], pageNo: number, pageSize: number): Observable<Coach[]> {
+    const params = {
+      areas: chosedAreas,
+      pageNo,
+      pageSize
+    };
+    return this.httpClient.get<Coach[]>(this.BASE_URL + '/filter', {params});
   }
 // TODO: types for object
   registerCoach(coach: Object) {
