@@ -1,6 +1,5 @@
 package com.practice.coach.finder.demo.services;
 
-import java.util.Collections;
 import java.util.List;
 
 import java.util.stream.Collectors;
@@ -34,7 +33,7 @@ public class CoachService {
 		return coachRepo.findAll().stream()
 				.map(coach -> new CoachDTO(coach.getId(), coach.getFirstName(), coach.getLastName(), coach.getRate(),
 						coach.getDescription(),
-						coach.getAreas().stream().map(area -> area.getFullDesc()).collect(Collectors.toList()),
+						coach.getAreas().stream().map(Area::getFullDesc).collect(Collectors.toList()),
 						coach.getCoachRequest().stream()
 								.map(request -> new RequestDTO(request.getEmail(), request.getMessage(), coach.getId().toString()))
 								.collect(Collectors.toList())))
@@ -63,10 +62,7 @@ public class CoachService {
 	public List<CoachDTO> filterCoaches(List<String> areas, Integer pageNo, Integer pageSize){
 		Pageable pageable = PageRequest.of(pageNo, pageSize);
 		List<Coach> resultSet = coachRepo.getFilteredCoaches(areas, pageable);
-		//		List<Coach> resultSet = coachRepo.getFilteredCoaches(areas, pageable)
-//				.stream()
-//				.map(id -> coachRepo.findById(id).orElseThrow(EntityNotFoundException::new))
-//				.collect(Collectors.toList());
+
 		return resultSet.stream()
 				.map(coach -> new CoachDTO(coach.getId(), coach.getFirstName(), coach.getLastName(), coach.getRate(),
 						coach.getDescription(),

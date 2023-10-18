@@ -17,8 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class AreaService {
 	private final AreaRepository repo;
 	
-//	@Cacheable(
-//		      value = "areasCache")
+	@Cacheable(
+		      value = "areasCache")
 	@Transactional(readOnly = true)
 	public List<AreaDTO> getAreas(){
 		return repo.findAll().stream()
