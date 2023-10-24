@@ -1,4 +1,4 @@
-<template>
+<template style="margin-top: 30px">
 
 <div style="max-width: 70%;" id="carouselExampleIndicators" class="carousel slide m-auto" data-bs-ride="carousel">
  

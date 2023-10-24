@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import type { CoachRequest } from "@/types/CoachRequest";
-import type { PropType } from "vue";
-
-const props = defineProps({
-
-  request: {
-    type: Object as PropType<CoachRequest>
-  }
-})
-</script>
-
 <template>
   <div class="custom-card mb-4">
     <div class="custom-card__side custom-card__side--front">
@@ -32,6 +20,19 @@ const props = defineProps({
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import type { CoachRequest } from "@/types/CoachRequest";
+import type { PropType } from "vue";
+
+const props = defineProps({
+
+  request: {
+    type: Object as PropType<CoachRequest>
+  }
+})
+</script>
+
 <style scoped>
 .custom-card {
   perspective: 150rem;

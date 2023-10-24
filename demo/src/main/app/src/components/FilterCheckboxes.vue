@@ -1,12 +1,12 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
     <div v-for="area in allAreas" :key="area.code">
       <div class="form-check m-2">
         <input v-model="areasSelected" @change="handleFilters" class="form-check-input" type="checkbox" :value="area.code" id="flexCheckDefault" />
         <label class="form-check-label" for="flexCheckDefault"> {{ area.desc }} </label>
       </div>
     </div>
-      <custom-button @click="handleRefresh" type="button" title="REFRESH"></custom-button>
+    <custom-button @click="handleRefresh" type="button" title="REFRESH"></custom-button>
     </div>
 </template>
 <script setup lang="ts">
@@ -24,16 +24,16 @@ onMounted(async() => {
 const allAreas = ref<Area[]>([])
 const areasSelected = ref<string[]>([])
 
-
-const emit = defineEmits(['handleFilters'])
+const emit = defineEmits(['handleFilters','handleRefresh'])
 
 const handleFilters = () => {
+  
 emit('handleFilters', areasSelected.value)
 }
 
 const handleRefresh = () => {
   areasSelected.value = []
-  handleFilters()
+emit('handleRefresh', areasSelected.value)
 }
 
 </script>

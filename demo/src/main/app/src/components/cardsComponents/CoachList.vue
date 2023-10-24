@@ -1,58 +1,35 @@
 <template>
-  <div>
-    <div v-if="coaches.length" class="container mb-4 section-cards">
-      <div v-if="filters?.length && !filteredCoaches?.length" class="text-center mb-2" style="color: #ff7730;">THERE AREN'T COACHES WITH THIS SKILL</div>
+  <div class="p-4">
+    <div>
+      <div v-if="coaches?.length" class="row justify-content-center">
+        <div v-for="coach in coaches" :key="coach.id" class="col col-12 col-xl-2 col-lg-4 col-md-4 col-sm-4">
+          <CoachCard :coach="coach"></CoachCard>
+        </div>
+      </div>
       <div v-else>
-        <div class="row  justify-content-center">
-        <div class="col col-6 col-md-3 col-sm-2"
-        v-for="coach in filteredCoaches?.length ? filteredCoaches : (slice ? coaches.slice(-slice) : coaches)" 
-        :key="coach.id">
-          <CoachCard :coach="coach"></CoachCard>   
-        </div> 
+        <h5 class="text-center" style="color:  #ff7730;">Sorry, there aren't more coaches :)</h5>
       </div>
     </div>
-      </div>
-    <div v-else class="text-center mb-2" style="color: #ff7730;">THERE AREN'T COACHES AT THE MOMENT</div>
   </div>
-  
-
 </template>
 <script setup lang="ts">
-import CoachCard from './CoachCard.vue';
+import CoachCard from './CoachCard.vue'
 
-import { getAllCoaches } from '@/services/CoachService';
-import { onMounted, PropType, ref } from 'vue'
-import { Coach } from '@/types/Coach';
-
-const coaches = ref<Coach[]>([])
-
-
+import { type PropType } from 'vue'
+import { type Coach } from '@/types/Coach'
 
 const props = defineProps({
-    slice: {
-        type: Number,
-        required: false
-    },
-    filteredCoaches: {
-      type: Object as PropType<Coach[]>,
-      required: false,
-    },
-    filters: {
-      type: Array,
-      required: false
-    }
+  coaches: {
+    type: Object as PropType<Coach[]>,
+    required: false
+  },
+  filters: {
+    type: Array,
+    required: false
+  }
 })
 
-onMounted(async () => {
- coaches.value = await getAllCoaches()
- 
-})
 
 </script>
 <style scoped>
-.section-cards {
- padding: 3rem 0;
-}
-
-
 </style>

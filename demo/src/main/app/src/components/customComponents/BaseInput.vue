@@ -4,10 +4,11 @@
     <input
       class="form-control"
       :type="type"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      v-model="inputValue"
       :placeholder="label"
-    />
+      @input="onInput"
+      />
+      <!-- @input="$emit('update:modelValue',  $event.target.value)" -->
    
       <div class="input-errors" v-for="error of errors" :key="error.$uid">
         <div class="text-danger">{{ error.$message }}</div>
@@ -16,6 +17,17 @@
 
 </template>
 <script setup lang="ts">
+import { ref } from "vue"
+
+
+const inputValue = ref<string | number | null>(null) 
+const emit = defineEmits(['updateValue'])
+
+const onInput = () => {
+
+  emit('updateValue', inputValue.value)
+}
+
 defineProps({
   label: {
     type: String

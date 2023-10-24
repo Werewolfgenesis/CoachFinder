@@ -1,13 +1,20 @@
 <template>
-  <div class="container mb-4 section-cards">
+  <div class="container mb-4">
     <h3 class="requests-header text-center p-2">All requests</h3>
     <div class="row justify-content-center">
-      <div v-if="requests.length">
-        <div class="col col-6 col-md-3 col-sm-2" v-for="req in requests" :key="req.coach.id">
+      <div
+        style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px" 
+        v-if="requests.length"
+      >
+        <div
+          class="col col-12 col-xl-2 col-lg-4 col-md-4 col-sm-4"
+          v-for="req in requests"
+          :key="req.coach.id"
+        >
           <RequestCard :request="req"></RequestCard>
         </div>
       </div>
-      <div class="text-center" style="color: #ef5e10;" v-else>There aren't any requests</div>
+      <div class="text-center" style="color: #ef5e10" v-else>There aren't any requests</div>
     </div>
   </div>
 </template>
@@ -35,4 +42,3 @@ onMounted(async () => {
   animation-timing-function: ease-out;
 }
 </style>
-@/types/Coach

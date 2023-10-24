@@ -1,25 +1,12 @@
-<script setup lang="ts">
-import type { Coach } from '@/types/Coach'
-import { type PropType } from 'vue'
-import ContactFormComponent from '../ContactFormComponent.vue'
-import CustomButton from '../customComponents/CustomButton.vue'
-
-const props = defineProps({
-  coach: {
-    type: Object as PropType<Coach>
-  }
-})
-
-const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
-</script>
 
 <template>
+  <div>
   <div class="custom-card mb-4">
     <div class="custom-card__side custom-card__side--front container text-center">
       <div class="row pt-4 pb-2"> 
         <div class="col text-center">
           <h5 class="card-title fs-3">{{ coach?.firstName }} {{ coach?.lastName }}</h5>
-          <div class="fs-4 card__rate">${{ coach?.rate }}/hour</div>
+          <div class="fs-4 card__rate">${{ coach?.rate }}per/hour</div>
         </div>
       </div>
       <ul class="list-group " v-for="skill in coach?.areas" :key="skill.code">
@@ -43,7 +30,7 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              :data-bs-target= "'#demo' + coach?.id" 
             ></custom-button>
           </div>
         </div>
@@ -51,12 +38,29 @@ const title = 'Contact ' + props.coach?.firstName + ' ' + props.coach?.lastName
     </div>
   </div>
   <ContactFormComponent
-    :title="title"
-    target="exampleModal"
+    :title="coach?.firstName + ' ' + coach?.lastName"
+    :target = "'demo' + coach?.id" 
     body="tapak"
-    :coachId="props.coach.id"
+    :coachId="coach?.id"
   />
+  </div>
 </template>
+
+<script setup lang="ts">
+import type { Coach } from '@/types/Coach'
+import { type PropType } from 'vue'
+import ContactFormComponent from '../ContactFormComponent.vue'
+import CustomButton from '../customComponents/CustomButton.vue'
+
+
+
+const props = defineProps({
+  coach: {
+    type: Object as PropType<Coach>
+    }
+  })
+
+</script>
 
 <style>
 ul {
@@ -73,7 +77,6 @@ ul {
 .custom-card__side {
   color: white;
 
-  margin-top: 2rem;
   height: 20rem;
   transition: all 0.8s ease;
   position: absolute;
@@ -83,7 +86,6 @@ ul {
   backface-visibility: hidden;
   border-radius: 3px;
   box-shadow:3rem 1.5rem 4rem rgba(black, .15);
-  /* box-shadow: 0 1.5rem 4rem rgba(rgb(2, 2, 2), 0.15); */
 }
 
 .custom-card:hover .custom-card__side {
@@ -134,4 +136,3 @@ ul {
   color: transparent;
 }
 </style>
-@/types/Coach

@@ -26,7 +26,6 @@
 </template>
 <script setup lang="ts">
 import CustomButton from '@/components/customComponents/CustomButton.vue';
-import type { Coach } from '@/types/CoachType';
+import type { Coach } from '@/types/Coach';
 
 </script>
-@/types/Coach
